@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>أمد – Onboarding</title>
+<title>أمد</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -11,52 +11,52 @@
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 }
 
-body {
+html, body {
   margin: 0;
-  height: 100vh;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
   background: linear-gradient(180deg, #BFECE8 0%, #F6E1C8 55%, #FFFFFF 100%);
-  display: flex;
-  justify-content: center;
   color: #1C1C1E;
 }
 
-.container {
-  width: 100%;
-  max-width: 420px;
+/* Sections */
+.section {
+  height: 100vh;
+  scroll-snap-align: start;
   padding: 24px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.skip {
-  text-align: left;
-  font-size: 14px;
-  color: #7FA9A6;
-  cursor: pointer;
-}
-
-.slide {
-  display: none;
+  justify-content: center;
   align-items: center;
+}
+
+.content {
+  max-width: 420px;
   text-align: center;
-  flex-direction: column;
-  margin-top: 40px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.slide.active {
-  display: flex;
+.content.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
+/* Shared UI */
 .icon-circle {
   width: 96px;
   height: 96px;
   border-radius: 50%;
   background: rgba(255,255,255,0.55);
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 24px;
+  justify-content: center;
+  margin: 0 auto 24px;
 }
 
 .icon {
@@ -80,117 +80,129 @@ p {
   font-weight: 600;
 }
 
-.footer {
+/* Links */
+.links {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 24px;
 }
 
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-.dot {
-  width: 6px;
-  height: 6px;
-  background: #D1D1D6;
-  border-radius: 50%;
-}
-
-.dot.active {
-  width: 18px;
-  border-radius: 6px;
-  background: #7FA9A6;
-}
-
-button {
-  height: 52px;
-  border-radius: 26px;
-  border: none;
-  background: rgba(255,255,255,0.6);
+.link-box {
+  background: rgba(255,255,255,0.65);
+  padding: 14px;
+  border-radius: 18px;
+  font-size: 15px;
   color: #7FA9A6;
-  font-size: 16px;
+  text-decoration: none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="slider">
+<!-- Section 1 - Why it matters -->
+<section class="section">
+  <div class="content">
+    <div class="icon-circle"><div class="icon">❓</div></div>
+    <h1>ليش أمد مهم؟</h1>
 
-  <div class="skip" onclick="goToEnd()">تخطي</div>
+    <p>
+      في كثير من المواقف اليومية،
+      التواصل يعتمد على الكلام أو الكتابة فقط.
+    </p>
 
-  <div class="slide active">
+    <p>
+      هذا يترك فئة كبيرة من الناس
+      في وضع غير مريح أو غير مفهوم.
+    </p>
+
+    <p>
+      <span class="highlight">أمد</span>
+      وُجد عشان يقلل هذا الحاجز،
+      ويجعل التواصل أبسط،
+      أهدأ، وأكثر إنسانية.
+    </p>
+  </div>
+</section>
+
+<!-- Section 2 - Title -->
+<section class="section">
+  <div class="content">
+    <h1>هذي ميزات تطبيقنا</h1>
+    <p>
+      صممنا أمد عشان يدعم التواصل
+      في المواقف الحقيقية، اليومية،
+      وبطريقة تحترم المستخدم.
+    </p>
+  </div>
+</section>
+
+<!-- Section 3 -->
+<section class="section">
+  <div class="content">
     <div class="icon-circle"><div class="icon">👥</div></div>
     <h1>تواصل</h1>
-    <p>شاهد فيديوهات لغة الإشارة مع وصف مكتوب يساعدك على فهم كل موقف بسهولة.</p>
+    <p>
+      فيديوهات لغة إشارة مع وصف مكتوب
+      تساعدك تفهم الموقف بدون توتر.
+    </p>
   </div>
+</section>
 
-  <div class="slide">
+<!-- Section 4 -->
+<section class="section">
+  <div class="content">
     <div class="icon-circle"><div class="icon">❤️</div></div>
     <h1>راحة وطمأنينة</h1>
-    <p>يوفر لك <span class="highlight">أمد</span> تجربة تواصل مريحة لتتفاعل بثقة.</p>
+    <p>
+      تجربة تواصل مريحة
+      تخليك تتفاعل بثقة وهدوء.
+    </p>
   </div>
+</section>
 
-  <div class="slide">
+<!-- Section 5 -->
+<section class="section">
+  <div class="content">
     <div class="icon-circle"><div class="icon">🎤</div></div>
     <h1>وضوح</h1>
-    <p>يسجل كلام الشخص أمامك ويعرضه مباشرة كنص واضح على الشاشة.</p>
+    <p>
+      يسجل كلام الشخص أمامك
+      ويعرضه مباشرة كنص واضح.
+    </p>
   </div>
+</section>
 
-  <div class="footer">
-    <div class="dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
+<!-- Section 6 - About us -->
+<section class="section">
+  <div class="content">
+    <h1>تعرّف علينا أكثر</h1>
+
+    <div class="links">
+      <a class="link-box" href="#" target="_blank">Behance – Case Study</a>
+      <a class="link-box" href="#" target="_blank">TestFlight – Demo</a>
+
+      <a class="link-box" href="https://www.linkedin.com/in/reema-aljohani" target="_blank">LinkedIn – Reema Aljohani</a>
+      <a class="link-box" href="#" target="_blank">LinkedIn – Norah Aldawsari</a>
+      <a class="link-box" href="#" target="_blank">LinkedIn – Maha Al Thawwab</a>
+      <a class="link-box" href="#" target="_blank">LinkedIn – Reem Alghamdi</a>
+      <a class="link-box" href="#" target="_blank">LinkedIn – Shahd Muharraq</a>
     </div>
-    <button onclick="next()">التالي</button>
   </div>
-
-</div>
+</section>
 
 <script>
-let current = 0;
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-const button = document.querySelector('button');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.3 });
 
-function update() {
-  slides.forEach((s,i)=>s.classList.toggle('active', i===current));
-  dots.forEach((d,i)=>d.classList.toggle('active', i===current));
-  button.textContent = current === slides.length-1 ? 'ابدأ' : 'التالي';
-}
-
-function next() {
-  if (current < slides.length-1) {
-    current++;
-    update();
-  } else {
-    alert("جاهزين للتطبيق 🚀");
-  }
-}
-
-function goToEnd() {
-  current = slides.length-1;
-  update();
-}
-
-/* Swipe */
-let startX = 0;
-const slider = document.getElementById('slider');
-
-slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-slider.addEventListener('touchend', e => {
-  const diff = startX - e.changedTouches[0].clientX;
-  if (diff > 50 && current < slides.length-1) current++;
-  if (diff < -50 && current > 0) current--;
-  update();
-});
+document.querySelectorAll('.content').forEach(el => observer.observe(el));
 </script>
 
 </body>
 </html>
-
-
