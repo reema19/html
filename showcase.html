@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>أمد – Onboarding</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(180deg, #BFECE8 0%, #F6E1C8 55%, #FFFFFF 100%);
+  display: flex;
+  justify-content: center;
+  color: #1C1C1E;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.skip {
+  text-align: left;
+  font-size: 14px;
+  color: #7FA9A6;
+  cursor: pointer;
+}
+
+.slide {
+  display: none;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.slide.active {
+  display: flex;
+}
+
+.icon-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.icon {
+  font-size: 40px;
+  color: #7FA9A6;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #3A3A3C;
+}
+
+.highlight {
+  color: #FF8A3D;
+  font-weight: 600;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #D1D1D6;
+  border-radius: 50%;
+}
+
+.dot.active {
+  width: 18px;
+  border-radius: 6px;
+  background: #7FA9A6;
+}
+
+button {
+  height: 52px;
+  border-radius: 26px;
+  border: none;
+  background: rgba(255,255,255,0.6);
+  color: #7FA9A6;
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="slider">
+
+  <div class="skip" onclick="goToEnd()">تخطي</div>
+
+  <div class="slide active">
+    <div class="icon-circle"><div class="icon">👥</div></div>
+    <h1>تواصل</h1>
+    <p>شاهد فيديوهات لغة الإشارة مع وصف مكتوب يساعدك على فهم كل موقف بسهولة.</p>
+  </div>
+
+  <div class="slide">
+    <div class="icon-circle"><div class="icon">❤️</div></div>
+    <h1>راحة وطمأنينة</h1>
+    <p>يوفر لك <span class="highlight">أمد</span> تجربة تواصل مريحة لتتفاعل بثقة.</p>
+  </div>
+
+  <div class="slide">
+    <div class="icon-circle"><div class="icon">🎤</div></div>
+    <h1>وضوح</h1>
+    <p>يسجل كلام الشخص أمامك ويعرضه مباشرة كنص واضح على الشاشة.</p>
+  </div>
+
+  <div class="footer">
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <button onclick="next()">التالي</button>
+  </div>
+
+</div>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const button = document.querySelector('button');
+
+function update() {
+  slides.forEach((s,i)=>s.classList.toggle('active', i===current));
+  dots.forEach((d,i)=>d.classList.toggle('active', i===current));
+  button.textContent = current === slides.length-1 ? 'ابدأ' : 'التالي';
+}
+
+function next() {
+  if (current < slides.length-1) {
+    current++;
+    update();
+  } else {
+    alert("جاهزين للتطبيق 🚀");
+  }
+}
+
+function goToEnd() {
+  current = slides.length-1;
+  update();
+}
+
+/* Swipe */
+let startX = 0;
+const slider = document.getElementById('slider');
+
+slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+slider.addEventListener('touchend', e => {
+  const diff = startX - e.changedTouches[0].clientX;
+  if (diff > 50 && current < slides.length-1) current++;
+  if (diff < -50 && current > 0) current--;
+  update();
+});
+</script>
+
+</body>
+</html>
+
+
