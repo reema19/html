@@ -128,6 +128,59 @@ body {
 .feature p {
   line-height: 1.9;
 }
+/* ===== FEATURE JOURNEY ===== */
+.journey {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 520px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background: var(--orange);
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.line {
+  width: 1px;
+  height: 48px;
+  background: rgba(0,0,0,0.1);
+  margin-right: 6px;
+}
+
+.step-content h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.step-content p {
+  margin: 0;
+  line-height: 1.8;
+  color: #3A3A3C;
+}
+
+/* Mobile refinement */
+@media (max-width: 768px) {
+  .journey {
+    gap: 28px;
+  }
+
+  .step {
+    gap: 16px;
+  }
+}
+
 
 /* ===== LINKS ===== */
 .links {
@@ -210,44 +263,55 @@ body {
   </div>
 </section>
 
-<!-- FEATURES -->
+<!-- FEATURES – JOURNEY STYLE -->
 <section class="wrapper">
   <h2>هذي ميزات تطبيقنا</h2>
 
-  <div class="features-b">
+  <div class="journey">
 
-    <!-- PRIMARY FEATURE -->
-    <div class="feature primary">
-      <h3>ابدأ بالتواصل، بدون ما تشرح نفسك</h3>
-      <p>
-        فيديوهات لغة إشارة جاهزة<br>
-        بجمل مستخدمة يوميًا،<br>
-        تساعدك توصل فكرتك مباشرة.
-      </p>
+    <div class="step">
+      <div class="dot"></div>
+      <div class="step-content">
+        <h3>ابدأ بالتواصل، بدون ما تشرح نفسك</h3>
+        <p>
+          فيديوهات لغة إشارة جاهزة
+          بجمل مستخدمة يوميًا،
+          تساعدك توصل فكرتك مباشرة.
+        </p>
+      </div>
     </div>
 
-    <!-- SECONDARY -->
-    <div class="feature">
-      <h3>راحة وطمأنينة</h3>
-      <p>
-        لما تكون الرسالة واضحة،<br>
-        التوتر يخف.<br>
-        أمد يساعدك تتواصل بدون استعجال.
-      </p>
+    <div class="line"></div>
+
+    <div class="step">
+      <div class="dot"></div>
+      <div class="step-content">
+        <h3>راحة وطمأنينة</h3>
+        <p>
+          لما تكون الرسالة واضحة،
+          التوتر يخف.
+          أمد يساعدك تتواصل بدون استعجال.
+        </p>
+      </div>
     </div>
 
-    <!-- SECONDARY -->
-    <div class="feature">
-      <h3>وضوح</h3>
-      <p>
-        المساعد الذكي يسمع كلام<br>
-        الشخص اللي قدامك،<br>
-        ويبسطه ويعرضه كنص مفهوم.
-      </p>
+    <div class="line"></div>
+
+    <div class="step">
+      <div class="dot"></div>
+      <div class="step-content">
+        <h3>وضوح</h3>
+        <p>
+          المساعد الذكي يسمع كلام
+          الشخص اللي قدامك،
+          ويبسطه ويعرضه كنص مفهوم.
+        </p>
+      </div>
     </div>
 
   </div>
 </section>
+
 
 <!-- ABOUT -->
 <section class="wrapper">
