@@ -80,23 +80,34 @@ body {
   line-height: 1.8;
 }
 
-/* ===== WHY ===== */
-.why {
-  display: grid;
-  gap: 32px;
-  max-width: 520px;
+/* ===== WHY (DESIGNED TEXT) ===== */
+.why-designed {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.why p {
-  font-size: 18px;
-  line-height: 1.9;
+.why-line {
+  font-size: 22px;
+  line-height: 1.8;
 }
 
-/* ===== FEATURES GRID ===== */
-.features {
+.why-line.muted {
+  color: #6b6b6f;
+}
+
+.why-line.highlight {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+/* ===== FEATURES (LAYOUT B) ===== */
+.features-b {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: 1.2fr 1fr;
   gap: 32px;
+  margin-top: 48px;
 }
 
 .feature {
@@ -105,8 +116,8 @@ body {
   border-radius: 28px;
 }
 
-.feature.big {
-  grid-column: span 2;
+.feature.primary {
+  grid-row: span 2;
 }
 
 .feature h3 {
@@ -115,7 +126,7 @@ body {
 }
 
 .feature p {
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 /* ===== LINKS ===== */
@@ -125,12 +136,28 @@ body {
   max-width: 420px;
 }
 
-.link {
+/* fix existing markup */
+.link-box {
   background: rgba(255,255,255,0.7);
   padding: 16px 20px;
   border-radius: 20px;
   text-decoration: none;
   color: var(--teal);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .features-b {
+    grid-template-columns: 1fr;
+  }
+
+  .feature.primary {
+    grid-row: auto;
+  }
+
+  .why-line {
+    font-size: 20px;
+  }
 }
 </style>
 </head>
@@ -154,12 +181,32 @@ body {
   </div>
 </section>
 
-<!-- WHY -->
+<!-- WHY IT MATTERS (DESIGNED) -->
 <section class="wrapper">
-  <div class="why">
-    <p>في كثير من المواقف اليومية، التواصل يعتمد على الكلام أو الكتابة فقط.</p>
-    <p>هذا يترك فئة كبيرة من الناس في وضع غير مريح أو غير مفهوم.</p>
-    <p><strong>أمد</strong> وُجد عشان يقلل هذا الحاجز، ويجعل التواصل أبسط وأكثر إنسانية.</p>
+  <div class="why-designed">
+    <div class="why-line">تخيّل إنك تحتاج توصل فكرة بسيطة.</div>
+
+    <div class="why-line muted">في مكان عام.</div>
+
+    <div class="why-line muted">
+      والشخص اللي قدامك<br>
+      ما يفهم لغتك.
+    </div>
+
+    <div class="why-line">
+      فجأة،<br>
+      كل شيء يصير أصعب مما لازم.
+    </div>
+
+    <div class="why-line highlight">
+      أمد ما يحل كل شيء،<br>
+      لكنه يخفف هذه اللحظة.
+    </div>
+
+    <div class="why-line muted">
+      ويخلي التواصل…<br>
+      أقل توترًا، وأكثر إنسانية.
+    </div>
   </div>
 </section>
 
@@ -167,21 +214,38 @@ body {
 <section class="wrapper">
   <h2>هذي ميزات تطبيقنا</h2>
 
-  <div class="features">
-    <div class="feature big">
-      <h3>تواصل</h3>
-      <p>فيديوهات لغة إشارة مع وصف مكتوب تساعدك تفهم الموقف بدون توتر.</p>
+  <div class="features-b">
+
+    <!-- PRIMARY FEATURE -->
+    <div class="feature primary">
+      <h3>ابدأ بالتواصل، بدون ما تشرح نفسك</h3>
+      <p>
+        فيديوهات لغة إشارة جاهزة<br>
+        بجمل مستخدمة يوميًا،<br>
+        تساعدك توصل فكرتك مباشرة.
+      </p>
     </div>
 
+    <!-- SECONDARY -->
     <div class="feature">
       <h3>راحة وطمأنينة</h3>
-      <p>تجربة تواصل مريحة تخليك تتفاعل بثقة.</p>
+      <p>
+        لما تكون الرسالة واضحة،<br>
+        التوتر يخف.<br>
+        أمد يساعدك تتواصل بدون استعجال.
+      </p>
     </div>
 
+    <!-- SECONDARY -->
     <div class="feature">
       <h3>وضوح</h3>
-      <p>يسجل كلام الشخص أمامك ويعرضه كنص واضح.</p>
+      <p>
+        المساعد الذكي يسمع كلام<br>
+        الشخص اللي قدامك،<br>
+        ويبسطه ويعرضه كنص مفهوم.
+      </p>
     </div>
+
   </div>
 </section>
 
@@ -190,12 +254,13 @@ body {
   <h2>تعرّف علينا أكثر</h2>
 
   <div class="links">
-    <a class="link" href="#">Behance – Case Study</a>
-    <a class="link" href="https://www.linkedin.com/in/reema-aljohani">LinkedIn – Reema Aljohani</a>
-    <a class="link" href="#">LinkedIn – Norah Aldawsari</a>
-    <a class="link" href="#">LinkedIn – Maha Al Thawwab</a>
-    <a class="link" href="#">LinkedIn – Reem Alghamdi</a>
-    <a class="link" href="#">LinkedIn – Shahd Muharraq</a>
+    <a class="link-box" href="#" target="_blank">Behance – Case Study</a>
+
+    <a class="link-box" href="https://www.linkedin.com/in/reema-aljohani-74785a27b" target="_blank">LinkedIn – Reema Aljohani</a>
+    <a class="link-box" href="#" target="_blank">LinkedIn – Norah Aldawsari</a>
+    <a class="link-box" href="https://www.linkedin.com/in/maha-al-thawwab-694050202" target="_blank">LinkedIn – Maha Al Thawwab</a>
+    <a class="link-box" href="https://www.linkedin.com/in/reem-alghamdi-723171252" target="_blank">LinkedIn – Reem Alghamdi</a>
+    <a class="link-box" href="https://www.linkedin.com/in/shahd-muharraq-" target="_blank">LinkedIn – Shahd Muharraq</a>
   </div>
 </section>
 
