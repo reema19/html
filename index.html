@@ -13,26 +13,23 @@
 
 html, body {
   margin: 0;
-  height: 100%;
+  padding: 0;
   scroll-behavior: smooth;
 }
 
 body {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
   background: #FFFFFF;
   color: #1C1C1E;
 }
 
-/* Sections */
+/* ===== Layout ===== */
 .section {
-  height: 100vh;
-  scroll-snap-align: start;
-  padding: 24px;
+  padding: 120px 24px;
   display: flex;
   justify-content: center;
-  align-items: center;
+}
 
+.section-gradient {
   background: linear-gradient(
     180deg,
     #BFECE8 0%,
@@ -42,11 +39,12 @@ body {
 }
 
 .content {
-  max-width: 420px;
+  max-width: 520px;
   text-align: center;
+
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .content.visible {
@@ -54,10 +52,44 @@ body {
   transform: translateY(0);
 }
 
-/* Shared UI */
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh;
+  align-items: center;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #3A3A3C;
+}
+
+/* ===== Scroll Indicator ===== */
+.scroll-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 22px;
+  color: #7FA9A6;
+  animation: bounce 1.6s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 6px); }
+}
+
+/* ===== Shared UI ===== */
 .icon-circle {
-  width: 96px;
-  height: 96px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   background: rgba(255,255,255,0.55);
   display: flex;
@@ -67,7 +99,7 @@ body {
 }
 
 .icon {
-  font-size: 40px;
+  font-size: 36px;
   color: #7FA9A6;
 }
 
@@ -78,8 +110,9 @@ h1 {
 
 p {
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.9;
   color: #3A3A3C;
+  margin-bottom: 16px;
 }
 
 .highlight {
@@ -87,17 +120,21 @@ p {
   font-weight: 600;
 }
 
-/* Links */
+/* ===== Feature blocks ===== */
+.feature {
+  margin-top: 64px;
+}
+
+/* ===== Links ===== */
 .links {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 16px;
-  margin-top: 24px;
+  margin-top: 32px;
 }
 
 .link-box {
   background: rgba(255,255,255,0.65);
-  padding: 14px;
+  padding: 16px;
   border-radius: 18px;
   font-size: 15px;
   color: #7FA9A6;
@@ -108,8 +145,22 @@ p {
 
 <body>
 
-<!-- Section 1 - Why it matters -->
-<section class="section">
+<!-- HERO -->
+<section class="section section-gradient hero">
+  <div class="content">
+    <h1>أمد</h1>
+    <p>
+      تطبيق يدعم التواصل بلغة
+      تحترم المستخدم
+      وتفهم احتياجه.
+    </p>
+  </div>
+
+  <div class="scroll-indicator">↓</div>
+</section>
+
+<!-- WHY IT MATTERS -->
+<section class="section section-gradient">
   <div class="content">
     <div class="icon-circle"><div class="icon">❓</div></div>
     <h1>ليش أمد مهم؟</h1>
@@ -133,8 +184,8 @@ p {
   </div>
 </section>
 
-<!-- Section 2 - Title -->
-<section class="section">
+<!-- TITLE -->
+<section class="section section-gradient">
   <div class="content">
     <h1>هذي ميزات تطبيقنا</h1>
     <p>
@@ -145,56 +196,54 @@ p {
   </div>
 </section>
 
-<!-- Section 3 -->
-<section class="section">
+<!-- FEATURES -->
+<section class="section section-gradient">
   <div class="content">
-    <div class="icon-circle"><div class="icon">👥</div></div>
-    <h1>تواصل</h1>
-    <p>
-      فيديوهات لغة إشارة مع وصف مكتوب
-      تساعدك تفهم الموقف بدون توتر.
-    </p>
+
+    <div class="feature">
+      <div class="icon-circle"><div class="icon">👥</div></div>
+      <h1>تواصل</h1>
+      <p>
+        فيديوهات لغة إشارة مع وصف مكتوب
+        تساعدك تفهم الموقف بدون توتر.
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="icon-circle"><div class="icon">❤️</div></div>
+      <h1>راحة وطمأنينة</h1>
+      <p>
+        تجربة تواصل مريحة
+        تخليك تتفاعل بثقة وهدوء.
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="icon-circle"><div class="icon">🎤</div></div>
+      <h1>وضوح</h1>
+      <p>
+        يسجل كلام الشخص أمامك
+        ويعرضه مباشرة كنص واضح.
+      </p>
+    </div>
+
   </div>
 </section>
 
-<!-- Section 4 -->
-<section class="section">
-  <div class="content">
-    <div class="icon-circle"><div class="icon">❤️</div></div>
-    <h1>راحة وطمأنينة</h1>
-    <p>
-      تجربة تواصل مريحة
-      تخليك تتفاعل بثقة وهدوء.
-    </p>
-  </div>
-</section>
-
-<!-- Section 5 -->
-<section class="section">
-  <div class="content">
-    <div class="icon-circle"><div class="icon">🎤</div></div>
-    <h1>وضوح</h1>
-    <p>
-      يسجل كلام الشخص أمامك
-      ويعرضه مباشرة كنص واضح.
-    </p>
-  </div>
-</section>
-
-<!-- Section 6 - About us -->
-<section class="section">
+<!-- ABOUT -->
+<section class="section section-gradient">
   <div class="content">
     <h1>تعرّف علينا أكثر</h1>
 
-    <div class="links">
-      <a class="link-box" href="#" target="_blank">Behance – Case Study</a>
+<div class="links">
+     <a class="link-box" href="#" target="_blank">Behance – Case Study</a>
 
-      <a class="link-box" href="www.linkedin.com/in/reema-aljohani-74785a27b" target="_blank">LinkedIn – Reema Aljohani</a>
-      <a class="link-box" href="#" target="_blank">LinkedIn – Norah Aldawsari</a>
-      <a class="link-box" href="https://www.linkedin.com/in/maha-al-thawwab-694050202?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Maha Al Thawwab</a>
-      <a class="link-box" href="https://www.linkedin.com/in/reem-alghamdi-723171252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Reem Alghamdi</a>
-      <a class="link-box" href="https://www.linkedin.com/in/shahd-muharraq-?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Shahd Muharraq</a>
-    </div>
+     <a class="link-box" href="www.linkedin.com/in/reema-aljohani-74785a27b" target="_blank">LinkedIn – Reema Aljohani</a>
+     <a class="link-box" href="#" target="_blank">LinkedIn – Norah Aldawsari</a>
+     <a class="link-box" href="https://www.linkedin.com/in/maha-al-thawwab-694050202?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Maha Al Thawwab</a>
+     <a class="link-box" href="https://www.linkedin.com/in/reem-alghamdi-723171252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Reem Alghamdi</a>
+     <a class="link-box" href="https://www.linkedin.com/in/shahd-muharraq-?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Shahd Muharraq</a>
+   </div>
   </div>
 </section>
 
@@ -205,7 +254,7 @@ const observer = new IntersectionObserver(entries => {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.15 });
 
 document.querySelectorAll('.content').forEach(el => observer.observe(el));
 </script>
