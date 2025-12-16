@@ -6,258 +6,198 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+:root {
+  --mint: #BFECE8;
+  --peach: #F6E1C8;
+  --teal: #7FA9A6;
+  --orange: #FF8A3D;
+  --text: #1C1C1E;
+}
+
 * {
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
-}
-
 body {
-  background: #FFFFFF;
-  color: #1C1C1E;
+  margin: 0;
+  color: var(--text);
+  background: #fff;
+  overflow-x: hidden;
 }
 
-/* ===== Layout ===== */
-.section {
+/* ===== BACKGROUND BLOBS ===== */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+}
+
+.blob.mint {
+  background: var(--mint);
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  right: -120px;
+}
+
+.blob.peach {
+  background: var(--peach);
+  width: 360px;
+  height: 360px;
+  bottom: 10%;
+  left: -120px;
+}
+
+/* ===== LAYOUT ===== */
+.wrapper {
+  max-width: 1100px;
+  margin: auto;
   padding: 120px 24px;
-  display: flex;
-  justify-content: center;
 }
 
-.section-gradient {
-  background: linear-gradient(
-    180deg,
-    #BFECE8 0%,
-    #F6E1C8 55%,
-    #FFFFFF 100%
-  );
-}
-
-.content {
-  max-width: 520px;
-  text-align: center;
-
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.content.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== Hero ===== */
 .hero {
   min-height: 100vh;
+  display: flex;
   align-items: center;
-  position: relative;
 }
 
 .hero h1 {
-  font-size: 34px;
-  margin-bottom: 12px;
-}
-
-.hero p {
-  font-size: 17px;
-  line-height: 1.8;
-  color: #3A3A3C;
-}
-
-/* ===== Scroll Indicator ===== */
-.scroll-indicator {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 22px;
-  color: #7FA9A6;
-  animation: bounce 1.6s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, 6px); }
-}
-
-/* ===== Shared UI ===== */
-.icon-circle {
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 24px;
-}
-
-.icon {
-  font-size: 36px;
-  color: #7FA9A6;
-}
-
-h1 {
-  font-size: 26px;
-  margin-bottom: 12px;
-}
-
-p {
-  font-size: 16px;
-  line-height: 1.9;
-  color: #3A3A3C;
+  font-size: 52px;
   margin-bottom: 16px;
 }
 
-.highlight {
-  color: #FF8A3D;
-  font-weight: 600;
+.hero p {
+  font-size: 20px;
+  max-width: 420px;
+  line-height: 1.8;
 }
 
-/* ===== Feature blocks ===== */
+/* ===== WHY ===== */
+.why {
+  display: grid;
+  gap: 32px;
+  max-width: 520px;
+}
+
+.why p {
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+/* ===== FEATURES GRID ===== */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+}
+
 .feature {
-  margin-top: 64px;
+  background: rgba(255,255,255,0.7);
+  padding: 32px;
+  border-radius: 28px;
 }
 
-/* ===== Links ===== */
+.feature.big {
+  grid-column: span 2;
+}
+
+.feature h3 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.feature p {
+  line-height: 1.8;
+}
+
+/* ===== LINKS ===== */
 .links {
   display: grid;
   gap: 16px;
-  margin-top: 32px;
+  max-width: 420px;
 }
 
-.link-box {
-  background: rgba(255,255,255,0.65);
-  padding: 16px;
-  border-radius: 18px;
-  font-size: 15px;
-  color: #7FA9A6;
+.link {
+  background: rgba(255,255,255,0.7);
+  padding: 16px 20px;
+  border-radius: 20px;
   text-decoration: none;
+  color: var(--teal);
 }
 </style>
 </head>
 
 <body>
 
+<div class="bg">
+  <div class="blob mint"></div>
+  <div class="blob peach"></div>
+</div>
+
 <!-- HERO -->
-<section class="section section-gradient hero">
-  <div class="content">
+<section class="wrapper hero">
+  <div>
     <h1>أمد</h1>
     <p>
-      تطبيق يدعم التواصل بلغة
-      تحترم المستخدم
+      تطبيق يدعم التواصل
+      بلغة تحترم المستخدم
       وتفهم احتياجه.
     </p>
   </div>
-
-  <div class="scroll-indicator">↓</div>
 </section>
 
-<!-- WHY IT MATTERS -->
-<section class="section section-gradient">
-  <div class="content">
-    <div class="icon-circle"><div class="icon">❓</div></div>
-    <h1>ليش أمد مهم؟</h1>
-
-    <p>
-      في كثير من المواقف اليومية،
-      التواصل يعتمد على الكلام أو الكتابة فقط.
-    </p>
-
-    <p>
-      هذا يترك فئة كبيرة من الناس
-      في وضع غير مريح أو غير مفهوم.
-    </p>
-
-    <p>
-      <span class="highlight">أمد</span>
-      وُجد عشان يقلل هذا الحاجز،
-      ويجعل التواصل أبسط،
-      أهدأ، وأكثر إنسانية.
-    </p>
-  </div>
-</section>
-
-<!-- TITLE -->
-<section class="section section-gradient">
-  <div class="content">
-    <h1>هذي ميزات تطبيقنا</h1>
-    <p>
-      صممنا أمد عشان يدعم التواصل
-      في المواقف الحقيقية، اليومية،
-      وبطريقة تحترم المستخدم.
-    </p>
+<!-- WHY -->
+<section class="wrapper">
+  <div class="why">
+    <p>في كثير من المواقف اليومية، التواصل يعتمد على الكلام أو الكتابة فقط.</p>
+    <p>هذا يترك فئة كبيرة من الناس في وضع غير مريح أو غير مفهوم.</p>
+    <p><strong>أمد</strong> وُجد عشان يقلل هذا الحاجز، ويجعل التواصل أبسط وأكثر إنسانية.</p>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="section section-gradient">
-  <div class="content">
+<section class="wrapper">
+  <h2>هذي ميزات تطبيقنا</h2>
 
-    <div class="feature">
-      <div class="icon-circle"><div class="icon">👥</div></div>
-      <h1>تواصل</h1>
-      <p>
-        فيديوهات لغة إشارة مع وصف مكتوب
-        تساعدك تفهم الموقف بدون توتر.
-      </p>
+  <div class="features">
+    <div class="feature big">
+      <h3>تواصل</h3>
+      <p>فيديوهات لغة إشارة مع وصف مكتوب تساعدك تفهم الموقف بدون توتر.</p>
     </div>
 
     <div class="feature">
-      <div class="icon-circle"><div class="icon">❤️</div></div>
-      <h1>راحة وطمأنينة</h1>
-      <p>
-        تجربة تواصل مريحة
-        تخليك تتفاعل بثقة وهدوء.
-      </p>
+      <h3>راحة وطمأنينة</h3>
+      <p>تجربة تواصل مريحة تخليك تتفاعل بثقة.</p>
     </div>
 
     <div class="feature">
-      <div class="icon-circle"><div class="icon">🎤</div></div>
-      <h1>وضوح</h1>
-      <p>
-        يسجل كلام الشخص أمامك
-        ويعرضه مباشرة كنص واضح.
-      </p>
+      <h3>وضوح</h3>
+      <p>يسجل كلام الشخص أمامك ويعرضه كنص واضح.</p>
     </div>
-
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="section section-gradient">
-  <div class="content">
-    <h1>تعرّف علينا أكثر</h1>
+<section class="wrapper">
+  <h2>تعرّف علينا أكثر</h2>
 
-<div class="links">
-     <a class="link-box" href="#" target="_blank">Behance – Case Study</a>
-
-     <a class="link-box" href="www.linkedin.com/in/reema-aljohani-74785a27b" target="_blank">LinkedIn – Reema Aljohani</a>
-     <a class="link-box" href="#" target="_blank">LinkedIn – Norah Aldawsari</a>
-     <a class="link-box" href="https://www.linkedin.com/in/maha-al-thawwab-694050202?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Maha Al Thawwab</a>
-     <a class="link-box" href="https://www.linkedin.com/in/reem-alghamdi-723171252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Reem Alghamdi</a>
-     <a class="link-box" href="https://www.linkedin.com/in/shahd-muharraq-?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn – Shahd Muharraq</a>
-   </div>
+  <div class="links">
+    <a class="link" href="#">Behance – Case Study</a>
+    <a class="link" href="https://www.linkedin.com/in/reema-aljohani">LinkedIn – Reema Aljohani</a>
+    <a class="link" href="#">LinkedIn – Norah Aldawsari</a>
+    <a class="link" href="#">LinkedIn – Maha Al Thawwab</a>
+    <a class="link" href="#">LinkedIn – Reem Alghamdi</a>
+    <a class="link" href="#">LinkedIn – Shahd Muharraq</a>
   </div>
 </section>
-
-<script>
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.content').forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
